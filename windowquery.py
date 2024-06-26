@@ -31,4 +31,4 @@ if __name__ == '__main__':
         import sys
         if cmd == 'exit;':
             sys.exit()
-        query(eval(cmd))#eval()函数就是实现list、dict、tuple、与str之间的转化
+        query(eval(cmd))
