@@ -1,0 +1,110 @@
+create创建文件（数据库和表）
+---------------------------------------------------------
+create database db_one;
+sudo use db_one;
+
+CREATE TABLE book(
+id INT(11)NOT NULL AUTO INCREMENT,
+name VARCHAR(45)DEFAULT NULL,
+author VARCHAR(30)DEFAULT NULL,
+publisher VARCHAR(45)DEFAULT NULL,
+collection_location VARCHAR(45)DEFAULT NULL,
+PRIMARY KEY (id)
+)ENGINE=InnoDB,charset=gbk;
+show tables;
+
+insert插入数据
+-------------------------------------------------------
+sudo INSERT INTO book VALUES(5562,活着,余华,北京十月文艺出版社,五楼北11架B面2列1层);
+sudo INSERT INTO book VALUES(913,娱乐至死,尼尔·波兹曼,北京中信出版社,四楼南17架B面5列4层);
+sudo insert into book values(247,生死疲劳,莫言,北京作家出版社,四楼北7架B面5列3层);
+sudo insert into book values(267,我与地坛,史铁生,北京人民文学出版社,将军路四楼北16架A面2列1层);
+
+update更新数据
+---------------------------------------------------------
+sudo update book set id=3306 where name=活着;
+
+alter修改表结构
+---------------------------------------------------------
+sudo alter table book add column 校区 varchar(15) default 将军路;
+
+sudo alter table book change 校区 campus;
+
+sudo alter table book modify campus varchar(20);
+show columns;
+
+sudo alter table book drop column campus;
+
+sudo alter table book add index bookname name;
+
+delete删除数据
+-------------------------------------------------------
+sudo delete from book  where name=生死疲劳;
+
+drop删除表结构
+-------------------------------------------------------
+sudo drop index bookname on book;
+
+sudo drop table book;
+
+窗口查询
+----------------------------------------------------------
+[[0,1],[0,1],[0,1],[0,1]]
+[[-1,1],[-1,1],[-1,1],[-1,1]]
+
+有无索引查询的对比
+-------------------------------------------------------
+18613.26205
+
+事务功能
+------------------------------------------------------
+sudo use db_one;
+
+CREATE TABLE student(
+id INT(11)NOT NULL AUTO INCREMENT,
+name VARCHAR(45) DEFAULT NULL,
+sex VARCHAR(30) DEFAULT NULL,
+age  INT(11) DEFAULT NULL,
+college VARCHAR(45) DEFAULT NULL,
+major VARCHAR(45) DEFAULT NULL,
+PRIMARY KEY (id)
+)ENGINE=InnoDB,charset=gbk;
+
+show tables;
+
+select * from student;
+
+开始事务
+------------------------------
+BEGIN;
+
+sudo INSERT INTO student VALUES(2316135,李嘉怡,女,23,计算机科学与技术学院,电子信息专业);
+
+select * from student;
+
+提交事务
+------------------------------
+COMMIT;
+
+select * from student;
+show tables;
+回滚
+------------------------------
+ROLLBACK;
+
+select * from student;
+show tables;
+END;
+
+
+sudo INSERT INTO student VALUES(2316135,钟黎,女,23,计算机科学与技术学院,网络安全专业);
+
+show tables;
+
+
+
+
+sudo update student set name=张嘉欣 where name=钟黎;
+
+sudo delete from student  where name=张嘉欣;
+
