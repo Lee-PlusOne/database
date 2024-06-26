@@ -97,14 +97,5 @@ show tables;
 END;
 
 
-sudo INSERT INTO student VALUES(2316135,钟黎,女,23,计算机科学与技术学院,网络安全专业);
 
-show tables;
-
-
-
-
-sudo update student set name=张嘉欣 where name=钟黎;
-
-sudo delete from student  where name=张嘉欣;
 
